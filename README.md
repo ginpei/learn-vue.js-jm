@@ -1,22 +1,30 @@
-# hello-nuxt
+# Vue.js
 
-> My slick Nuxt.js project
+## 2018-10-06
 
-## Build Setup
+### Agenda
 
-``` bash
-# install dependencies
-$ yarn install
+- Create a new Nuxt.js app following the official instruction
+  - https://nuxtjs.org/guide/installation
+  - Without installing anything extra
+- Set up a simple WebSockets server
+- Modify HTML in `index.vue`
+- `data()` and `{{foo}}`
+- `mounted()` and `destroyed()`
+- Connect to the server over WebSockets
+- `addEventListener()`
+- Updating data
+- `console.log()`
+- Object and its property
 
-# serve with hot reload at localhost:3000
-$ yarn run dev
+### To start WebSockets server
 
-# build for production and launch server
-$ yarn run build
-$ yarn start
-
-# generate static project
-$ yarn run generate
+```console
+$ node server
 ```
 
-For detailed explanation on how things work, checkout [Nuxt.js docs](https://nuxtjs.org).
+### To start dev server
+
+```console
+$ npm run dev
+```
