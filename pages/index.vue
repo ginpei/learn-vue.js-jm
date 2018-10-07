@@ -3,21 +3,9 @@
     <div>
       <logo/>
       <h1 class="title">
-        hello-nuxt
+        Message [{{message}}]
       </h1>
-      <h2 class="subtitle">
-        My slick Nuxt.js project
-      </h2>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          class="button--green">Documentation</a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          class="button--grey">GitHub</a>
-      </div>
+      <div>{{connected}}</div>
     </div>
   </section>
 </template>
@@ -28,8 +16,36 @@ import Logo from '~/components/Logo.vue'
 export default {
   components: {
     Logo
-  }
-}
+  },
+
+  data () {
+    return {
+      connected: false,
+      message: 'ok',
+    };
+  },
+
+  mounted () {
+    const url = 'ws://localhost:8080';
+    this.ws = new WebSocket(url);
+
+    this.ws.addEventListener('open', () => {
+      console.log('connection established!');
+    });
+
+    this.ws.addEventListener('message', (event) => {
+      const data = JSON.parse(event.data);
+      const message = data.message;
+      console.log('message came!', message);
+
+      this.message = message;
+    });
+  },
+
+  destroyed () {
+    this.ws.close();
+  },
+};
 </script>
 
 <style>
